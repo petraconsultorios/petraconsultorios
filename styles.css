@@ -887,3 +887,19 @@ html {
 .especialidad-section {
   scroll-margin-top: 100px;
 }
+/* ===== FIX FINAL INSTAGRAM PROFESIONALES ===== */
+
+#profesionales-alquiler {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* esto lo centra */
+    text-align: center;
+}
+
+#profesionales-alquiler .instagram-media {
+    width: 100% !important;
+    max-width: 540px !important;
+    margin: 2rem 0 !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+}
