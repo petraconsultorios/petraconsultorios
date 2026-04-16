@@ -903,3 +903,7 @@ html {
     border-radius: 20px !important;
     overflow: hidden !important;
 }
+.logo-img {
+    height: 90px; 
+    width: auto;
+}
