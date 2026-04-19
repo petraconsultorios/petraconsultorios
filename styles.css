@@ -907,3 +907,54 @@ html {
     height: 90px; 
     width: auto;
 }
+.padron-container {
+    text-align: center;
+    margin: 10px 0 30px;
+    padding: 0 15px;
+}
+
+.padron-titulo {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-primario);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+/* BOTÓN (lo dejamos como ya te gustó) */
+.padron-cta {
+    display: flex;
+    justify-content: center;
+}
+
+.padron-cta a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    color: var(--color-blanco);
+    padding: 12px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.padron-cta a:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.padron-cta a:active {
+    transform: scale(0.97);
+}
+
+.padron-cta .flecha {
+    transition: transform 0.3s ease;
+}
+
+.padron-cta a:hover .flecha {
+    transform: translateX(4px);
+}
