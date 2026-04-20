@@ -255,3 +255,14 @@ function inicializarAnimaciones() {
         });
     }
 })();
+// Submenu toggle mobile
+document.querySelectorAll('.has-submenu > a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        if (window.innerWidth < 1024) {
+            e.preventDefault();
+            const submenu = this.nextElementSibling;
+            submenu.style.display =
+                submenu.style.display === 'flex' ? 'none' : 'flex';
+        }
+    });
+});

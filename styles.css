@@ -958,3 +958,35 @@ html {
 .padron-cta a:hover .flecha {
     transform: translateX(4px);
 }
+/* ===== SUBMENÚ ===== */
+
+.has-submenu {
+    position: relative;
+}
+
+.submenu {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-primario);
+    width: 220px;
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+.submenu li {
+    width: 100%;
+}
+
+.submenu a {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.has-submenu:hover .submenu {
+    display: flex;
+}
