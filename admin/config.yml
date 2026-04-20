@@ -1,0 +1,18 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: "config"
+    label: "Configuración"
+    files:
+      - file: "data/site.json"
+        label: "Datos del sitio"
+        name: "site"
+        fields:
+          - { label: "Teléfono", name: "telefono", widget: string }
+          - { label: "Instagram 1", name: "instagram1", widget: string }
+          - { label: "Instagram 2", name: "instagram2", widget: string }
