@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     inicializarNavegacion();
     inicializarAnimaciones();
 
+    cargarProfesionales();
+
     // Año dinámico en el footer
     var footerYear = document.getElementById('footerYear');
     if (footerYear) footerYear.textContent = new Date().getFullYear();
@@ -266,3 +268,65 @@ document.querySelectorAll('.has-submenu > a').forEach(link => {
         }
     });
 });
+// =====================================================
+// PROFESIONALES DINÁMICOS CON SUBCATEGORÍAS (4 COLUMNAS)
+// =====================================================
+function cargarProfesionales() {
+  fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTreCGeGvTOUkIGtnCHR6G2loFphYgAvH7WNV6N4zjZlFQfMAbtZD-0qlwP5rqbwb5Q-Z9Dv21C1FPj/pub?output=csv")
+    .then(res => res.text())
+    .then(data => {
+      const filas = data.split(/\r?\n/).filter(line => line.trim() !== "").slice(1);
+      const contenedor = document.getElementById('profesionales-dinamico');
+      const estructura = {};
+
+      filas.forEach(fila => {
+        const columnas = fila.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+        if (columnas.length < 4) return; // Valida las 4 columnas
+
+        const esp = columnas[0].trim().replace(/"/g, '');
+        const sub = columnas[1].trim().replace(/"/g, '');
+        const nom = columnas[2].trim().replace(/"/g, '');
+        const mat = columnas[3].trim().replace(/"/g, '');
+
+        if (!estructura[esp]) estructura[esp] = {};
+        if (!estructura[esp][sub]) estructura[esp][sub] = [];
+        estructura[esp][sub].push({ nombre: nom, matricula: mat });
+      });
+
+      contenedor.innerHTML = '';
+
+      Object.keys(estructura).forEach(esp => {
+        const seccion = document.createElement('div');
+        seccion.classList.add('especialidad-section');
+
+        // Emojis según especialidad
+        let emoji = '🩺';
+        const e = esp.toLowerCase();
+        if (e.includes('psicolog')) emoji = '🧠';
+        if (e.includes('psiquiatr')) emoji = '💊';
+        if (e.includes('nutri')) emoji = '🥑';
+        if (e.includes('fono')) emoji = '🗣️';
+        if (e.includes('psicoped')) emoji = '📚';
+
+        let htmlSubsecciones = '';
+        Object.keys(estructura[esp]).forEach(sub => {
+          const tituloSub = sub ? `<h4 class="subcategoria-titulo">${sub}</h4>` : '';
+          htmlSubsecciones += `
+            ${tituloSub}
+            <div class="profesionales-grid">
+              ${estructura[esp][sub].map(p => `
+                <div class="profesional-card">
+                  <div class="profesional-nombre">${p.nombre}</div>
+                  <div class="profesional-matricula">${p.matricula}</div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        });
+
+        seccion.innerHTML = `<div class="especialidad-header"><h3>${emoji} ${esp}</h3></div>${htmlSubsecciones}`;
+        contenedor.appendChild(seccion);
+      });
+      inicializarAnimaciones();
+    });
+}

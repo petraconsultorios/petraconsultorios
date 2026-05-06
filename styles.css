@@ -990,3 +990,67 @@ html {
 .has-submenu:hover .submenu {
     display: flex;
 }
+/* Corrección para que el menú de especialidades empuje el contenido en móviles */
+@media (max-width: 1023px) {
+    .submenu {
+        position: static !important; 
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.03); 
+        box-shadow: none;
+        display: none; /* Se activa con el click en JS */
+        flex-direction: column;
+    }
+}
+/* Ajustes para el menú desplegable y las tarjetas de profesionales */
+@media (max-width: 1023px) {
+    .submenu {
+        position: static !important; 
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.03); 
+        box-shadow: none;
+        display: none;
+        flex-direction: column;
+    }
+}
+
+.profesional-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profesional-icon {
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.especialidad-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* Estilo para la subcategoría (Atención de Adultos)[cite: 1, 2] */
+.subcategoria-titulo {
+    color: #4770A7; 
+    font-size: 1.4rem;
+    margin: 25px 0 15px 0;
+    padding-left: 15px;
+    border-left: 4px solid #4770A7; /* La rayita azul de la foto */
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Espaciado extra para los iconos de profesional */
+.profesional-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.subcategoria-titulo {
+    color: #4770A7; /* Azul de la imagen */
+    font-size: 1.4rem;
+    margin: 25px 0 15px 0;
+    padding-left: 15px;
+    border-left: 4px solid #4770A7; /* Rayita azul */
+    font-weight: 600;
+}
